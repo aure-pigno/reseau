@@ -78,6 +78,6 @@ int main ( int argc, char** argv )
 	char *toSend[2];
 	*toSend[1]="localhost";
 	*toSend[2]="blabla";
-	int err = talker(2, *toSend)
+	int err = talker(2, **toSend);
 	return 0;
 }
