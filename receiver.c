@@ -2,10 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-
+#include "fonction-receiver.h"
 #define TAILLEMAX 100
-
-int stInGetName();
 
 int main(int argc, char** argv){
 	if(argc != 5 && argc !=3){
@@ -52,17 +50,8 @@ int main(int argc, char** argv){
 	printf("Le nom du host est : %s\n",hostName);
 	printf("Le port est : %d\n",port);
 	
-	int err = listener.main();
+	int err = listener();
 	return 0;
 }
 
-/* Fonction qui lit un argument sur la sortie standard et qui renvoie celui-ci.
- * Revoie NULL si la fonction a échoué.
- */
 
-int stInGetName(){
-	while(fgets(fileName,TAILLEMAX,STDIN_FILENO)!=NULL){
-		printf("%s\n",fileName);
-	}
-	return 0;
-}
