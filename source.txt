@@ -1,3 +1,0 @@
-http://manpagesfr.free.fr/man/man3/getaddrinfo.3.html
-http://beej.us/guide/bgnet/output/html/singlepage/bgnet.html#sendtorecv
-http://www.barrgroup.com/Embedded-Systems/How-To/CRC-Calculation-C-Code

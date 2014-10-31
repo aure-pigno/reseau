@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include "fonction-receiver.h"
-#define TAILLEMAX 100
+#include "listener.c"
+#define MYPORT "4950"	// the port users will be connecting to
 
 int main(int argc, char** argv){
 	if(argc != 5 && argc !=3){
@@ -12,45 +12,41 @@ int main(int argc, char** argv){
 	}
 	char* fileName = NULL;
 	char* hostName = NULL;
-	int port = -1;
+	char* port = NULL;
 	int i;
-	for(i=0; i<argv;i++)
+	int boolean = 0;
+	for(i=1; i<argc;i++)
 	{
-		if(strcmp("[--file",argv[i])==0)
+		if(strcmp("--file",argv[i])==0)
 		{
-			filename = argv[i+1];
+			fileName = argv[i+1];
 			i++;
-			retireLast(filename, length(filename));
-			printf("filename %s\n", filename);
+			//printf("filename %s\n", fileName);
 		}
-		else if(isInt(argv[i])!=0)
+		else if (boolean == 0)
 		{
-			port = convertInt(argv[i], length(argv[i]));
-			printf("port %d\n", port);
+			hostName = argv[i];
+			//printf("hostname %s\n", hostName);
+			boolean = 1;
 		}
 		else
 		{
-			hostname = argv[i];
-			printf("hostname %s\n", hostname);
+			port = argv[i];
+			//printf("port %s\n", port);
 		}
-		if (port == -1 || hostname == NULL)
-		{
-			printf("Erreur arguments\n");
-		exit(-1); 
-		}
-		else if(fileName == NULL)
-		{
-			stInGetName()
-		}
-		
-
 	}
+	if (port == NULL || hostName == NULL)
+	{
+		printf("Erreur arguments\n");
+		exit(-1); 
+	}
+
+
 	
-	printf("Le nom du fichier est : %s\n",fileName);
-	printf("Le nom du host est : %s\n",hostName);
-	printf("Le port est : %d\n",port);
-	
-	int err = listener();
+	if(listener(fileName, port, hostName)!= 0)
+	{
+		printf("Erreur listener!");
+	}
 	return 0;
 }
 
